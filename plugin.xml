@@ -2,28 +2,28 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
-           id="com.markveys.picture-access"
+           id="com.antOnFire.camera-access"
       version="0.1">
 
-    <name>Check access to pictures on a device</name>
-    <description>Picture access plugin for cordova by markveys</description>
+    <name>Check access to camera on a device</name>
+    <description>Camera access plugin for cordova by antOnFire</description>
     <license>MIT</license>
-    <keywords>picture, access</keywords>
+    <keywords>camera, access</keywords>
 
-    <js-module src="www/PictureAccess.js" name="PictureAccess">
-      <clobbers target="PictureAccess" />
+    <js-module src="www/CameraAccess.js" name="CameraAccess">
+      <clobbers target="CameraAccess" />
     </js-module>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="PictureAccess">
-                <param name="ios-package" value="PictureAccess" />
+            <feature name="CameraAccess">
+                <param name="ios-package" value="CameraAccess" />
             </feature>
         </config-file>
 
-        <header-file src="src/ios/PictureAccess.h" />
-        <source-file src="src/ios/PictureAccess.m" />
+        <header-file src="src/ios/CameraAccess.h" />
+        <source-file src="src/ios/CameraAccess.m" />
     </platform>
 
 </plugin>
