@@ -1,5 +1,5 @@
 //
-//  PictureAccess.m
+//  CameraAccess.m
 //
 
 #import "CameraAccess.h"
