@@ -1,12 +1,12 @@
-# cordova-picture-access
-Simple cordova plugin for access check to the camera roll or picture gallery
+# cordova-camera-access
+Simple cordova plugin for access check to the camera
 
 # Usage
 
 ```javascript
-$window.plugins.pictureAccess.checkAccess(
+$window.plugins.cameraAccess.checkAccess(
   function() {
-    // Go ahead and access the picture, e.g. with cordova image picker
+    // Go ahead and access the camera
   },
   function() {
     // Inform the user that he has to give permission for access.
