@@ -24,7 +24,7 @@
         NSLog(@"Access to camera not yet determined. Will ask user.");
         __block CDVPluginResult* result = nil;
 
-        [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if(granted){
                 NSLog(@"Granted access to %@", mediaType);
             } else {
