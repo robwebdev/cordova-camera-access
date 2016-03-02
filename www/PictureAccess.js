@@ -4,7 +4,7 @@
  * Developed by berliner for markveys
  */
 
-var PictureAccess = function() {
+var CameraAccess = function() {
 
 };
 
@@ -12,20 +12,20 @@ var PictureAccess = function() {
 *	success - success callback
 *	fail - error callback
 */
-PictureAccess.prototype.checkAccess = function(success, fail) {
+CameraAccess.prototype.checkAccess = function(success, fail) {
   if (device.platform.toLowerCase() != 'ios') {
     success();
     return;
   }
-  cordova.exec(success, fail, "PictureAccess", "checkAccess");
+  cordova.exec(success, fail, "CameraAccess", "checkAccess");
 };
 if(!window.plugins) {
     window.plugins = {};
 }
-if (!window.plugins.pictureAccess) {
-    window.plugins.pictureAccess = new PictureAccess();
+if (!window.plugins.cameraAccess) {
+    window.plugins.cameraAccess = new CameraAccess();
 }
 
 if (typeof module != 'undefined' && module.exports) {
-  module.exports = PictureAccess;
+  module.exports = CameraAccess;
 }
