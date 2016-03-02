@@ -26,9 +26,9 @@
 
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if(granted){
-                NSLog(@"Granted access to %@", mediaType);
+                NSLog(@"Granted access to %@", AVMediaTypeVideo);
             } else {
-                NSLog(@"Not granted access to %@", mediaType);
+                NSLog(@"Not granted access to %@", AVMediaTypeVideo);
             }
         }];
     }
