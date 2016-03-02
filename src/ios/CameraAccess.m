@@ -11,7 +11,7 @@
 - (void) checkAccess:(CDVInvokedUrlCommand *)command {
 
     // Check for permission
-    ALAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 
     CDVPluginResult* result = nil;
 
