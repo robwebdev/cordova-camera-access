@@ -2,47 +2,38 @@
 //  PictureAccess.m
 //
 
-#import "PictureAccess.h"
+#import "CameraAccess.h"
 
-@implementation PictureAccess
+@implementation CameraAccess
 
 @synthesize callbackId;
 
 - (void) checkAccess:(CDVInvokedUrlCommand *)command {
 
     // Check for permission
-    ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
+    ALAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 
     CDVPluginResult* result = nil;
 
-    if (authStatus == ALAuthorizationStatusAuthorized) {
-        NSLog(@"Access to picture gallery granted");
+    if (authStatus == AVAuthorizationStatusAuthorized) {
+        NSLog(@"Access to camera granted");
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Access granted"];
         [self invokeCallback:command withResult:result];
     }
-    else if (authStatus == ALAuthorizationStatusNotDetermined) {
-        NSLog(@"Access to picture gallery not yet determined. Will ask user.");
+    else if (authStatus == AVAuthorizationStatusNotDetermined) {
+        NSLog(@"Access to camera not yet determined. Will ask user.");
         __block CDVPluginResult* result = nil;
 
-        ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
-        [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-            NSLog(@"Access to picture gallery granted by user");
-            result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Access granted"];
-            [self invokeCallback:command withResult:result];
-        } failureBlock:^(NSError *error) {
-            if (error.code == ALAssetsLibraryAccessUserDeniedError) {
-                NSLog(@"Access to picture gallery denied by user");
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Access denied"];
-                [self invokeCallback:command withResult:result];
-            } else{
-                NSLog(@"Other error code: %i", error.code);
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Access denied"];
-                [self invokeCallback:command withResult:result];
+        [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+            if(granted){
+                NSLog(@"Granted access to %@", mediaType);
+            } else {
+                NSLog(@"Not granted access to %@", mediaType);
             }
         }];
     }
     else {
-        NSLog(@"Access to picture gallery denied");
+        NSLog(@"Access to camera denied");
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Access denied"];
         [self invokeCallback:command withResult:result];
     }
