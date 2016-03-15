@@ -9,7 +9,7 @@ $window.plugins.cameraAccess.checkAccess(
     // Go ahead and access the camera
   },
   function() {
-    // Inform the user that he has to give permission for access.
+    // Inform the user that they have to give permission for access.
     // Ideally, ask for permission and try again.
   }
 );
