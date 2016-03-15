@@ -1,7 +1,7 @@
 /**
  * A simple plugin for Cordova to check access to the camera roll on iOS.
  *
- * Developed by berliner for markveys
+ * Developed by antonfire
  */
 
 var CameraAccess = function() {
