@@ -27,6 +27,8 @@
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if(granted){
                 NSLog(@"Granted access to %@", AVMediaTypeVideo);
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Access granted"];
+                [self invokeCallback:command withResult:result];
             } else {
                 NSLog(@"Not granted access to %@", AVMediaTypeVideo);
             }
