@@ -31,6 +31,8 @@
                 [self invokeCallback:command withResult:result];
             } else {
                 NSLog(@"Not granted access to %@", AVMediaTypeVideo);
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Access denied"];
+                [self invokeCallback:command withResult:result];
             }
         }];
     }
